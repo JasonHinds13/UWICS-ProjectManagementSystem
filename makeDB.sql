@@ -24,6 +24,7 @@ CREATE TABLE `users` (
     `firstname` char(255) NOT NULL default '',
     `lastname` char(255) NOT NULL default '',
     `email` char(255) NOT NULL default '',
+    `sig` char(255) NOT NULL default '',
     `password` char(255) NOT NULL default ''
 );
 
@@ -43,8 +44,10 @@ DROP TABLE IF EXISTS `tasks`;
 CREATE TABLE `tasks` (
     `id` int NOT NULL auto_increment PRIMARY KEY,
     `project_id` int NOT NULL default '0',
-    `title` char(255) NOT NULL default '',
-    `description` char(255) NOT NULL default ''
+    `name` char(255) NOT NULL default '',
+    `description` char(255) NOT NULL default '',
+    `member` char(255) NOT NULL default '',
+    `progress` char(255) NOT NULL default ''
 );
 
 -- Create Admin Account

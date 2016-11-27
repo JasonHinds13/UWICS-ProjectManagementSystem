@@ -29,6 +29,10 @@ if($_SERVER["REQUEST_METHOD"] === "POST"){
     if(isset($fname) && isset($lname) && isset($id_num) && isset($email) && isset($sig) && isset($acctype) && isset($password)){
         $member = new Member($fname,$lname,$id_num,$email,$sig,$acctype,$password);
         $member->store_to_db();
+        
+        //send mail
+        $msg = "Hello $fname, You have used this email to sign up for UWI CS Project Management System.";
+        mail($email,"Welcome to UWI CS Projects",$msg);
     }
     
     //post data for creating a new project
@@ -57,5 +61,14 @@ if($_SERVER["REQUEST_METHOD"] === "POST"){
 if($_SERVER["REQUEST_METHOD"] === "GET"){
     //handle get requests
 }
+
+/*
+try{
+mail("brandonhinds13@gmail.com","Test","This is a test.");
+echo "sent";
+}
+catch(Exception $e){
+    echo "Not sent";
+}*/
 
 ?>

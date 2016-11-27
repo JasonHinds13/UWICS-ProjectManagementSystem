@@ -50,5 +50,14 @@ CREATE TABLE `tasks` (
     `progress` char(255) NOT NULL default ''
 );
 
+-- create table 'interestgroup'
+
+DROP TABLE IF EXISTS `interestgroup`;
+CREATE TABLE `interestgroup` (
+    `id` int NOT NULL auto_increment PRIMARY KEY,
+    `leader_id` int NOT NULL default '0',
+    `name` char(255) NOT NULL default ''
+);
+
 -- Create Admin Account
 -- INSERT INTO `leaders` VALUES(1,'admin','admin','admin', sha1('password'));

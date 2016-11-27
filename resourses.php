@@ -74,4 +74,15 @@ class Task{
     }
 }
 
+class InterestGroup{
+    
+    public $name = "";
+    public $leader = "";
+    
+    function __construct($name, $leader){
+        $this->$name = $name;
+        $this->$leader = $leader;
+    }
+}
+
 ?>

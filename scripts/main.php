@@ -62,13 +62,4 @@ if($_SERVER["REQUEST_METHOD"] === "GET"){
     //handle get requests
 }
 
-/*
-try{
-mail("brandonhinds13@gmail.com","Test","This is a test.");
-echo "sent";
-}
-catch(Exception $e){
-    echo "Not sent";
-}*/
-
 ?>

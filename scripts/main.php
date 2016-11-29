@@ -16,6 +16,15 @@ catch(PDOException $e){
 
 if($_SERVER["REQUEST_METHOD"] === "POST"){
     
+    //handle logins
+    $logmail = $_POST["logmail"];
+    $logpass = $_POST["logpass"];
+    
+    if(isset($logmail) && isset($logpass)){
+        $sql = "SELECT * FROM users WHERE email = '$logmail' AND password = '$logpass';";
+        $conn->query($sql);
+    }
+    
     //post data for creating a new member
     $fname = $_POST["fname"];
     $lname = $_POST["lname"];

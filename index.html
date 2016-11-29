@@ -17,27 +17,37 @@
 <div class= "middle">
 <div id="signinfo">
 <h2> Sign Up</h2>
-<form>
+<form id="signup">
+    Account Type: 
+    <select name="acctype">
+		<option value ="leader">Project Leader</option>
+		<option value ="regul">Project Participant</option>
+	</select> <br />
 	First name: <input type = "text" name ="fname"/> <br/>
 	Last name: <input type = "text" name ="lname"/> <br/>
-	Male: <input type ="radio" name ="sex" value ="male"/>
-	Female: <input type ="radio" name = "sex" value="female"/> <br/>
-	ID number :<input type = "text" name ="id_num"/> <br/>
-	Username : <input type ="text" name="sig"/> <br />
-	Password : <input type ="password" name="password"/> <br/>
+	ID number: <input type = "text" name ="id_num"/> <br/>
 	Email: <input type="text" name ="email"> <br/>
-	Interest (Choose as many you like)
-	<select name="interests">
+	Password: <input type ="password" name="password"/> <br/>
+	Special Interest Group: 
+	<select name="sig">
 		<option value ="web">Web Development</option>
-		<option value ="robo">Robotics</option>
+		<option value ="robotics">Robotics</option>
 		<option value ="mobile">Mobile App Development</option>
 		<option value ="security">Security</option>
-	</select>
+	</select><br />
+	<input type="submit" name="signbtn" value="Sign Up"/>
 </form>
 </div>
+</div>
 
-<div>
-	<a href=""> Already a member? </a>
+<div id="logdiv">
+	<h3> Already a member? Login</h3>
+	
+	<form id="login">
+	    Email: <input type="text" name ="logmail">
+	    Password : <input type ="password" name="logpass"/>
+	    <input type="submit" name="loginbtn" value="Login"/>
+	</form>
 </div>
 
 <div class ="signbenefits">

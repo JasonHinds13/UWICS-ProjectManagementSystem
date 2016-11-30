@@ -7,6 +7,8 @@ $username = getenv('C9_USER');
 $password = '';
 $dbname = 'ProjectDB';
 
+session_start();
+
 try{
     $conn = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -28,7 +30,7 @@ if($_SERVER["REQUEST_METHOD"] === "POST"){
         
         if(count($result) == 1){
             echo "Login Successful";
-            header('Location: homepage.html');
+            header('Location: homepage.php');
         }
         else{
             echo "Password Incorrect";

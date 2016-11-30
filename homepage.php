@@ -1,3 +1,7 @@
+<?php
+
+?>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -11,8 +15,14 @@
             <button id = "projects">Projects</button>
             <button id = "tasks">Tasks</button>
         </div>
-        <div id = "codeview">
-            <iframe id = "code" src =""></iframe>
+        
+        <div id="myproj">
+            <h1>Your Projects</h1>
         </div>
+        
+        <div id="mytasks">
+            <h1>Your Tasks</h1>
+        </div>
+        
     </body>
 </html>

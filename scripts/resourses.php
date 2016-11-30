@@ -23,14 +23,15 @@ class Member{
     }
     
     public function store_to_db($conn){
+        $sql = "";
         if($this->acctype == "leader"){
-            $sql = "INSERT INTO leaders(uwi_id,firstname,lastname,email,sig,password) VALUES('$this->id_num','$this->fname','$this->lname','$this->email','$this->sig','$this->password';);";
-            $conn->exec($sql);
+            $sql = "INSERT INTO leaders(uwi_id,firstname,lastname,email,sig,password) VALUES('$this->id_num','$this->fname','$this->lname','$this->email','$this->sig','$this->password');";
         }
         else{
-            $sql = "INSERT INTO users(uwi_id,firstname,lastname,email,sig,password) VALUES('$this->id_num','$this->fname','$this->lname','$this->email','$this->sig','$this->password';);";
-            $conn->exec($sql);
+            $sql = "INSERT INTO users(uwi_id,firstname,lastname,email,sig,password) VALUES('$this->id_num','$this->fname','$this->lname','$this->email','$this->sig','$this->password');";
         }
+        
+        $conn->exec($sql);
     }
 }
 
@@ -82,6 +83,17 @@ class InterestGroup{
     public function __construct($name, $leader){
         $this->name = $name;
         $this->leader = $leader;
+    }
+    
+    public function store_to_db($conn){
+        $sql = "SELECT * FROM leaders WHERE name = '$this->leader';";
+        $q = $conn->query($sql);
+        
+        $result = $q->fetch();
+        
+        $lid = $result["uwi_id"];
+        
+        $query = "INSERT INTO interestgroup(leader_id, name) VALUES('$lid', '$this->name');";
     }
 }
 

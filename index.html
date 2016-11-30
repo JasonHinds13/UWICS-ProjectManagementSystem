@@ -1,69 +1,43 @@
+<!DOCTYPE html>
 <html>
-<head>
-    <title>Computing Society Project Portal: Sign Up Page</title>
-	<link rel="stylesheet" type = "text/css" href ="styles/login.css"/>
-</head>
+	<head>
+	    <title>Computing Society Project Portal: Sign Up Page</title>
+		<link rel="stylesheet" type = "text/css" href ="styles/login.css"/>
+		<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+		<script type="text/javascript" src="scripts/main.js"></script>
+	</head>
 
-<body>
-	
-<div> 
-	<img src="resources/uwi_cs.jpg" alt="computing society logo"/>
-</div>
-
-<div>
-<h1> Welcome to the UWI Mona Computing Society Project Portal</h1>
-</div>
-
-<div class= "middle">
-<div id="signinfo">
-<h2> Sign Up</h2>
-<form id="signup">
-    Account Type: 
-    <select name="acctype">
-		<option value ="leader">Project Leader</option>
-		<option value ="regul">Project Participant</option>
-	</select> <br />
-	First name: <input type = "text" name ="fname"/> <br/>
-	Last name: <input type = "text" name ="lname"/> <br/>
-	ID number: <input type = "text" name ="id_num"/> <br/>
-	Email: <input type="text" name ="email"> <br/>
-	Password: <input type ="password" name="password"/> <br/>
-	Special Interest Group: 
-	<select name="sig">
-		<option value ="web">Web Development</option>
-		<option value ="robotics">Robotics</option>
-		<option value ="mobile">Mobile App Development</option>
-		<option value ="security">Security</option>
-	</select><br />
-	<input type="submit" name="signbtn" value="Sign Up"/>
-</form>
-</div>
-</div>
-
-<div id="logdiv">
-	<h3> Already a member? Login</h3>
-	
-	<form id="login">
-	    Email: <input type="text" name ="logmail">
-	    Password : <input type ="password" name="logpass"/>
-	    <input type="submit" name="loginbtn" value="Login"/>
-	</form>
-</div>
-
-<div class ="signbenefits">
-	<h2> Join the community and : </h2>
-	<ul>
-		<li>solve problems with your fellow club members</li>
-		<li>Only do tasks that you're interested in</li>
-		<li>get real world coding experience and feedback from your clients</li>
-	</ul>
-</div>
-
-<footer>
-<p> Free fun coding at your fingertips! Sign up today!</p>
-<a href =""> Contact Us</a>
-<a href =""> About Us</a>
-</footer>
-
-</body>
+	<body>
+		<div> 
+			<img src="resources/uwi_cs.jpg" alt="computing society logo"/>
+		</div>
+		
+		<div>
+		<h1> Welcome to the UWI Mona Computing Society Project Portal</h1>
+		</div>
+		
+		<div>
+			<button id = "login" class="button">Login</button>
+			<button id = "signup" class="button">Sign Up</button>
+		</div>
+		
+		<div id = "logininfo">
+			
+		</div>
+		
+		<div class ="signbenefits">
+			<h3> Join the community and : </h3>
+			<ul>
+				<li>solve problems with your fellow club members</li>
+				<li>Only do tasks that you're interested in</li>
+				<li>get real world coding experience and feedback from your clients</li>
+			</ul>
+		</div>
+		
+		<footer>
+		<p> Free fun coding at your fingertips! Sign up today!</p>
+		<a href =""> Contact Us</a>
+		<a href =""> About Us</a>
+		</footer>
+	</body>
 </html>

@@ -9,6 +9,7 @@ $dbname = 'ProjectDB';
 
 try{
     $conn = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 }
 catch(PDOException $e){
     echo $e;
@@ -22,7 +23,16 @@ if($_SERVER["REQUEST_METHOD"] === "POST"){
     
     if(isset($logmail) && isset($logpass)){
         $sql = "SELECT * FROM users WHERE email = '$logmail' AND password = '$logpass';";
-        $conn->query($sql);
+        $q = $conn->query($sql);
+        
+        $result = $q->fetchAll(PDO::FETCH_ASSOC);
+        
+        if(count($result) > 0){
+            echo "Login Successful";
+        }
+        else{
+            echo "No Member Found";
+        }
     }
     
     //post data for creating a new member
@@ -37,7 +47,7 @@ if($_SERVER["REQUEST_METHOD"] === "POST"){
     //create new member
     if(isset($fname) && isset($lname) && isset($id_num) && isset($email) && isset($sig) && isset($acctype) && isset($password)){
         $member = new Member($fname,$lname,$id_num,$email,$sig,$acctype,$password);
-        $member->store_to_db();
+        $member->store_to_db($conn);
         
         //send mail
         $msg = "Hello $fname, You have used this email to sign up for UWI CS Project Management System.";
@@ -52,7 +62,7 @@ if($_SERVER["REQUEST_METHOD"] === "POST"){
     //create new project
     if(isset($pname) && isset($pdesc) &&isset($psig)){
         $proj = new Project($pname,$pdesc,$psig);
-        $proj->store_to_db();
+        $proj->store_to_db($conn);
     }
     
     //post data for creating new task
@@ -63,7 +73,7 @@ if($_SERVER["REQUEST_METHOD"] === "POST"){
     //create new task
     if(isset($tname) && isset($tdesc) && isset($tmember)){
         $task = new Task($tname,$tdesc,$tmember,0);
-        $task->store_to_db();
+        $task->store_to_db($conn);
     }
 }
 

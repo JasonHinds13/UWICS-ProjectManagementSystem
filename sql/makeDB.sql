@@ -4,26 +4,14 @@ USE ProjectDB;
 
 -- create table 'leaders' for project leaders
 
-DROP TABLE IF EXISTS `leaders`;
-CREATE TABLE `leaders` (
+DROP TABLE IF EXISTS `members`;
+CREATE TABLE `members` (
     `id` int NOT NULL auto_increment PRIMARY KEY,
     `uwi_id` int NOT NULL default '0',
     `firstname` char(255) NOT NULL default '',
     `lastname` char(255) NOT NULL default '',
     `email` char(255) NOT NULL default '',
-    `sig` char(255) NOT NULL default '',
-    `password` char(255) NOT NULL default ''
-);
-
--- create table 'users' for normal users
-
-DROP TABLE IF EXISTS `users`;
-CREATE TABLE `users` (
-    `id` int NOT NULL auto_increment PRIMARY KEY,
-    `uwi_id` int NOT NULL default '0',
-    `firstname` char(255) NOT NULL default '',
-    `lastname` char(255) NOT NULL default '',
-    `email` char(255) NOT NULL default '',
+    `acctype` char(255) NOT NULL default '',
     `sig` char(255) NOT NULL default '',
     `password` char(255) NOT NULL default ''
 );

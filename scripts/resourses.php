@@ -23,14 +23,7 @@ class Member{
     }
     
     public function store_to_db($conn){
-        $sql = "";
-        if($this->acctype == "leader"){
-            $sql = "INSERT INTO leaders(uwi_id,firstname,lastname,email,sig,password) VALUES('$this->id_num','$this->fname','$this->lname','$this->email','$this->sig','$this->password');";
-        }
-        else{
-            $sql = "INSERT INTO users(uwi_id,firstname,lastname,email,sig,password) VALUES('$this->id_num','$this->fname','$this->lname','$this->email','$this->sig','$this->password');";
-        }
-        
+        $sql = "INSERT INTO members(uwi_id,firstname,lastname,email,acctype,sig,password) VALUES('$this->id_num','$this->fname','$this->lname','$this->email','$this->acctype','$this->sig','$this->password');";
         $conn->exec($sql);
     }
 }
@@ -86,7 +79,7 @@ class InterestGroup{
     }
     
     public function store_to_db($conn){
-        $sql = "SELECT * FROM leaders WHERE name = '$this->leader';";
+        $sql = "SELECT * FROM members WHERE name = '$this->leader';";
         $q = $conn->query($sql);
         
         $result = $q->fetch();

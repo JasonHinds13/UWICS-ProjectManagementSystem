@@ -22,16 +22,16 @@ if($_SERVER["REQUEST_METHOD"] === "POST"){
     $logpass = $_POST["logpass"];
     
     if(isset($logmail) && isset($logpass)){
-        $sql = "SELECT * FROM users WHERE email = '$logmail' AND password = '$logpass';";
+        $sql = "SELECT * FROM members WHERE email='$logmail' AND password='$logpass';";
         $q = $conn->query($sql);
-        
         $result = $q->fetchAll(PDO::FETCH_ASSOC);
         
-        if(count($result) > 0){
+        if(count($result) == 1){
             echo "Login Successful";
+            header('Location: homepage.html');
         }
         else{
-            echo "No Member Found";
+            echo "Password Incorrect";
         }
     }
     

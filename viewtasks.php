@@ -19,8 +19,13 @@
             $res = $stmt->fetchAll(PDO::FETCH_ASSOC);
             
             foreach($res as $r){
+                $i = $r["project_id"];
+                $n = $conn->query("select projects.name from projects JOIN tasks ON projects.id = '$i';");
+                $m = $n->fetchAll(PDO::FETCH_ASSOC);
+                
                 echo "<h2>" . $r["name"] . "</h2>";
                 echo "<ul>";
+                echo "<li>" . "Project: " . $m[0]["name"] . "</li>";
                 echo "<li>" . "Description: " . $r["description"] . "</li>";
                 echo "<li>" . "Member: " . $r["member"] . "</li>";
                 echo "<li>" . "Progress: " . $r["progress"] . "%". "</li>";

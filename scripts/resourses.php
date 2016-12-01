@@ -113,4 +113,33 @@ class InterestGroup{
     }
 }
 
+class Message{
+	
+	private $author = "";
+	private $title = "";
+	private $message = "";
+	private $timestamp = "";
+
+	public function __constructo($author,$title,$message){
+	    $this->author = $author;
+	    $this->title = $title;
+	    $this->message = $message;
+	}
+
+	public function viewMessage(){
+	    echo $this->message;
+	}
+
+	public function messageSummary(){
+	    echo "Author: " . $this->author . " Message: " . $this->message;
+	}
+	
+	public function store_to_db($conn){
+	    $this->timestamp = date("Y-m-d H:i:s");
+	    
+	    $sql = "INSERT INTO messages(author,title,message,time) VALUES('$this->author','$this->title','$this->message','$this->timestamp');";
+        $conn->exec($sql);
+	}
+}
+
 ?>

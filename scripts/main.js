@@ -15,10 +15,10 @@ function init() {
     }
     );
     
-    /*window.captureEvents(Event.SUBMIT);
+    window.captureEvents(Event.SUBMIT);
     window.onsubmit = check;
 }
 
-function check() {*/
+function check() {
     
 }

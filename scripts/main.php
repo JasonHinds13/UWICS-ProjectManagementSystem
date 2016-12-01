@@ -24,11 +24,12 @@ if($_SERVER["REQUEST_METHOD"] === "POST"){
     $logpass = $_POST["logpass"];
     
     if(isset($logmail) && isset($logpass)){
-        $sql = "SELECT * FROM members WHERE email='$logmail' AND password='$logpass';";
+        //$sql = "SELECT * FROM members WHERE email='$logmail' AND password='$logpass';";
+        $sql = "SELECT * FROM members WHERE uwi_id='$logmail';";
         $q = $conn->query($sql);
         $result = $q->fetchAll(PDO::FETCH_ASSOC);
         
-        if(count($result) > 0){
+        if(count($result) > 0 && password_verify ($logpass , $result[0]["password"])){
             echo "Login Successful";
             
             $_SESSION["uwi_id"] = $result[0]["uwi_id"];
@@ -39,9 +40,12 @@ if($_SERVER["REQUEST_METHOD"] === "POST"){
             $_SESSION["sig"] = $result[0]["sig"];
             
             header('Location: /homepage.php');
-        }
+        }   
         else{
-            echo "Password Incorrect";
+            $message = "Incorrect Login Information";
+            echo "<script type='text/javascript'>alert('". $message ."');</script>";
+            
+            header('Refresh: 5; Location: /index.html');
         }
     }
     
@@ -52,7 +56,8 @@ if($_SERVER["REQUEST_METHOD"] === "POST"){
     $email = $_POST["email"];
     $sig = $_POST["sig"];
     $acctype = $_POST["acctype"];
-    $password = $_POST["password"];
+    $password = password_hash($_POST["password"], PASSWORD_DEFAULT);
+    //$password = $_POST["password"];
     
     //create new member
     if(isset($fname) && isset($lname) && isset($id_num) && isset($email) && isset($sig) && isset($acctype) && isset($password)){
@@ -63,8 +68,16 @@ if($_SERVER["REQUEST_METHOD"] === "POST"){
         $msg = "Hello $fname, You have used this email to sign up for UWI CS Project Management System.";
         mail($email,"Welcome to UWI CS Projects",$msg);
         
-        header('Location: /index.html');
+        $_SESSION["uwi_id"] = $id_num;
+        $_SESSION["firstname"] = $fname;
+        $_SESSION["lastname"] = $lname;
+        $_SESSION["email"] = $email;
+        $_SESSION["acctype"] = $acctype;
+        $_SESSION["sig"] = $sig;
+            
+        header('Location: /homepage.php');
     }
+
     
     //post data for creating a new project
     $pname = $_POST["proj_name"];
@@ -74,7 +87,7 @@ if($_SERVER["REQUEST_METHOD"] === "POST"){
     
     //create new project
     if(isset($pname) && isset($pdesc) &&isset($psig)){
-        $proj = new Project($pname,$pdesc,$projm,$psig);
+        $proj = new Project($pname,$pdesc,$psig);
         $proj->store_to_db($conn);
         
         header('Location: /viewprojects.php');
@@ -109,22 +122,10 @@ if($_SERVER["REQUEST_METHOD"] === "POST"){
         
         header('Location: /homepage.php');
     }
-    
-    //for forum posts
-    $auth = $_POST["m_author"];
-    $m_title = $_POST["m_title"];
-    $m_message = $_POST["m_message"];
-    
-    if(isset($auth) && isset($m_title) && isset($m_message)){
-        $mess = new Message($auth, $m_title, $m_message);
-        $mess->store_to_db($conn);
-        
-        header('Location: /forum.php');
-    }
 }
 
-//if($_SERVER["REQUEST_METHOD"] === "GET"){
+if($_SERVER["REQUEST_METHOD"] === "GET"){
     //handle get requests
-//}
+}
 
 ?>

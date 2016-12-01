@@ -118,6 +118,8 @@ if($_SERVER["REQUEST_METHOD"] === "POST"){
     if(isset($auth) && isset($m_title) && isset($m_message)){
         $m = new Message($auth, $m_title, $m_message);
         $m->store_to_db($conn);
+        
+        header('Location: /forum.php');
     }
 }
 

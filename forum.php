@@ -33,7 +33,7 @@
         
         <hr />
         
-        <form action="scripts/main.php" action="post">
+        <form action="scripts/main.php" method="post">
             Author: <input type="text" name ="author" required/> <br />
             Title: <input type="text" name ="m_title" required/> <br />
 	        Message: <input type ="text" name="m_message" required/> <br />

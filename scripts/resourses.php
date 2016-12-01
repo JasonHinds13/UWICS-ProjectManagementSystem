@@ -113,7 +113,7 @@ class InterestGroup{
     }
 }
 
-class Messages{
+class Message{
 	
 	private $author = "";
 	private $title = "";

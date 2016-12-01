@@ -32,22 +32,24 @@ class Project{
     
     private $name = "";
     private $desc = "";
+    private $member = "";
     private $sig = "";
     
     private $tasks = array();
     
-    public function __construct($name,$desc,$sig){
+    public function __construct($name,$desc,$member,$sig){
         $this->name = $name;
         $this->desc = $desc;
+        $this->member = $member;
         $this->sig = $sig;
     }
     
     public function view_details(){
-        echo "Project: " . $this->name . "Description: " .$this->desc . "SIG: " .$this->sig;
+        echo "Project: " . $this->name . "Description: " .$this->desc . "Member: " . $this->member . "SIG: " .$this->sig;
     }
     
     public function store_to_db($conn){
-        $sql = "INSERT INTO projects(name,description,sig) VALUES('$this->name','$this->desc','$this->sig');";
+        $sql = "INSERT INTO projects(name,description,member,sig) VALUES('$this->name','$this->desc','$this->member','$this->sig');";
         $conn->exec($sql);
     }
 }

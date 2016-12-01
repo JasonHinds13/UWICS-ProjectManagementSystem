@@ -22,6 +22,7 @@ DROP TABLE IF EXISTS `projects`;
 CREATE TABLE `projects` (
     `id` int NOT NULL auto_increment PRIMARY KEY,
     `name` char(255) NOT NULL default '',
+    `member` char(255) NOT NULL default '',
     `description` char(255) NOT NULL default '',
     `sig` char(255) NOT NULL default ''
 );

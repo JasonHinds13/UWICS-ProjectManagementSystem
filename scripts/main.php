@@ -62,16 +62,19 @@ if($_SERVER["REQUEST_METHOD"] === "POST"){
         //send mail
         $msg = "Hello $fname, You have used this email to sign up for UWI CS Project Management System.";
         mail($email,"Welcome to UWI CS Projects",$msg);
+        
+        header('Location: /index.php');
     }
     
     //post data for creating a new project
     $pname = $_POST["proj_name"];
     $pdesc = $_POST["proj_desc"];
+    $projm = $_POST["proj_mem"];
     $psig = $_POST["proj_sig"];
     
     //create new project
     if(isset($pname) && isset($pdesc) &&isset($psig)){
-        $proj = new Project($pname,$pdesc,$psig);
+        $proj = new Project($pname,$pdesc,$projm,$psig);
         $proj->store_to_db($conn);
         
         header('Location: /viewprojects.php');

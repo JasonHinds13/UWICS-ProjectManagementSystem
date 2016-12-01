@@ -24,6 +24,7 @@
                 echo "<h2>" . $r["name"] . "</h2>";
                 echo "<ul>";
                 echo "<li>" . "Description: " . $r["description"] . "</li>";
+                echo "<li> Member Email: ". $r["member"] . "</li>";
                 echo "<li>" . "SIG: " . $r["sig"] . "</li>";
                 echo "</ul>";
             }

@@ -15,7 +15,32 @@
         </div>
         
         <div id="myproj">
-            <h1>Your Projects and Tasks</h1>
+            <h1>Your Projects</h1>
+            
+            <?php
+                include 'scripts/main.php';
+                
+                $stmt = $conn->query("SELECT * FROM projects;");
+                $res = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            
+                foreach($res as $r){
+                    
+                    if ($_SESSION["email"] == $r["member"]){
+                
+                        echo "<h2>" . $r["name"] . "</h2>";
+                        echo "<ul>";
+                        echo "<li>" . "Description: " . $r["description"] . "</li>";
+                        echo "<li>" . "SIG: " . $r["sig"] ."</li>";
+                        echo "</ul>";
+                    }
+                }
+            ?>
+        </div>
+        
+        <hr />
+        
+        <div id="mytask">
+            <h1>Your Tasks</h1>
             
             <?php
                 include 'scripts/main.php';

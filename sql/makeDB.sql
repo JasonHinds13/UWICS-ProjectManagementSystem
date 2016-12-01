@@ -53,7 +53,7 @@ CREATE TABLE `interestgroup` (
 DROP TABLE IF EXISTS `messages`;
 CREATE TABLE `messages` (
     `id` int NOT NULL auto_increment PRIMARY KEY,
-    `author` int NOT NULL default '0',
+    `author` char(255) NOT NULL default '',
     `title` char(255) NOT NULL default '',
     `message` char(255) NOT NULL default '',
     `time` DATETIME

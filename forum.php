@@ -34,7 +34,7 @@
         <hr />
         
         <form action="scripts/main.php" method="post">
-            Author: <input type="text" name ="author" required/> <br />
+            Author: <input type="text" name ="m_author" required/> <br />
             Title: <input type="text" name ="m_title" required/> <br />
 	        Message: <input type ="text" name="m_message" required/> <br />
 	        <input type="submit" value="Post Message"/>

@@ -111,13 +111,13 @@ if($_SERVER["REQUEST_METHOD"] === "POST"){
     }
     
     //for forum posts
-    $auth = $_POST["author"];
+    $auth = $_POST["m_author"];
     $m_title = $_POST["m_title"];
     $m_message = $_POST["m_message"];
     
     if(isset($auth) && isset($m_title) && isset($m_message)){
-        $m = new Message($auth, $m_title, $m_message);
-        $m->store_to_db($conn);
+        $mess = new Message($auth, $m_title, $m_message);
+        $mess->store_to_db($conn);
         
         header('Location: /forum.php');
     }

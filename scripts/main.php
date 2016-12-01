@@ -36,8 +36,7 @@ if($_SERVER["REQUEST_METHOD"] === "POST"){
             $_SESSION["lastname"] = $result[0]["lastname"];
             $_SESSION["email"] = $result[0]["email"];
             $_SESSION["acctype"] = $result[0]["acctype"];
-            setcookie("acctype", $result[0]["acctype"], time()+3600);
-            $_COOKIE["test"] = "test";
+            setcookie("acctype", $result[0]["acctype"], time()+3600, '/', null, null, false);
             $_SESSION["sig"] = $result[0]["sig"];
             
             if ($_SESSION["acctype"] == "leader") {
@@ -76,8 +75,7 @@ if($_SERVER["REQUEST_METHOD"] === "POST"){
         $_SESSION["lastname"] = $lname;
         $_SESSION["email"] = $email;
         $_SESSION["acctype"] = $acctype;
-        setcookie("acctype", $acctype, time()+3600);
-        $_COOKIE["test"] = "test";
+        setcookie("acctype", $acctype, time()+3600, '/', null, null, false);
         $_SESSION["sig"] = $sig;
             
         

@@ -46,15 +46,3 @@ CREATE TABLE `interestgroup` (
     `leader_id` int NOT NULL default '0',
     `name` char(255) NOT NULL default ''
 );
-
--- participation in project
-
-DROP TABLE IF EXISTS `proj-part`;
-CREATE TABLE `proj-part` (
-    `id` int NOT NULL auto_increment PRIMARY KEY,
-    `proj_name` char(255) NOT NULL default '',
-    `member` char(255) NOT NULL default ''
-);
-
--- Create Admin Account
--- INSERT INTO `leaders` VALUES(1,'admin','admin','admin', sha1('password'));

@@ -97,9 +97,7 @@ if($_SERVER["REQUEST_METHOD"] === "POST"){
     
     if(isset($task_name) && isset($newprog)){
         
-        $nam = str_replace("+", " ", $task_name);
-        
-        $task = new Task($nam,'','','','');
+        $task = new Task($task_name,'','','','');
         $task->update_progress($conn, $newprog);
         
         header('Location: /homepage.php');

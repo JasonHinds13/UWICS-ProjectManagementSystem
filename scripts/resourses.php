@@ -68,8 +68,8 @@ class Task{
         $this->progress = $progress;
     }
     
-    public function update_progress($conn, $name, $newprog){
-        $sql = "UPDATE tasks SET progess = '$newprog' WHERE name = '$name';";
+    public function update_progress($conn, $newprog){
+        $sql = "UPDATE tasks SET progress = '$newprog' WHERE name = '$this->name';";
         $conn->exec($sql);
     }
     

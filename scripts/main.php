@@ -90,6 +90,20 @@ if($_SERVER["REQUEST_METHOD"] === "POST"){
         
         header('Location: /viewtasks.php');
     }
+    
+    //post data for updating task
+    $task_name = $_POST["task_name"];
+    $newprog = $_POST["newprog"];
+    
+    if(isset($task_name) && isset($newprog)){
+        
+        $nam = str_replace("+", " ", $task_name);
+        
+        $task = new Task($nam,'','','','');
+        $task->update_progress($conn, $newprog);
+        
+        header('Location: /homepage.php');
+    }
 }
 
 if($_SERVER["REQUEST_METHOD"] === "GET"){

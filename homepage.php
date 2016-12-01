@@ -30,12 +30,21 @@
                         $i = $r["project_id"];
                         $n = $conn->query("select projects.name from projects JOIN tasks ON projects.id = '$i';");
                         $m = $n->fetchAll(PDO::FETCH_ASSOC);
+                        
+                        $nam = str_replace(" ", "+", $r["name"]);
                 
                         echo "<h2>" . $r["name"] . "</h2>";
                         echo "<ul>";
                         echo "<li>" . "Project: " . $m[0]["name"] . "</li>";
                         echo "<li>" . "Description: " . $r["description"] . "</li>";
                         echo "<li>" . "Progress: " . $r["progress"] . "%". "</li>";
+                        echo "<li> Update Progress: ";
+                        echo '<form action="scripts/main.php" method="post">';
+                        echo '<input type="hidden" name="task_name" value="'.$nam. '"' . '/>';
+                        echo '<input type="text" name="newprog" /> ';
+                        echo '<input type="submit" value="Update" />';
+                        echo "</form>";
+                        echo "</li>";
                         echo "</ul>";
                     }
                 }

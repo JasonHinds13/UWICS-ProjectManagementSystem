@@ -113,4 +113,54 @@ class InterestGroup{
     }
 }
 
+class Messages{
+	
+	private $author = "";
+	private $title = "";
+	private $message = "";
+	private $timestamp = "";
+
+	public function __constructor($author,$title,$message,$timestamp){
+	    $this->author = $author;
+	    $this->title = $title;
+	    $this->message = $message;
+	    $this->timestamp = $timestamp;
+	}
+
+	public function viewMessage(){
+	    echo $this->message;
+	}
+
+	public function messageSummary(){
+	    echo "Author: " . $this->author . " Message: " . $this->message;
+	}
+}
+
+class Thread{
+	
+	private $title = "";
+	private $description = "";
+
+	private $messages = array();
+
+	public function __constructor($title,$description){
+	    $this->title = $title;
+	    $this->description = $description;
+	}
+
+	public function addMessage($message){
+	    array_push($messages, $message);
+	}
+
+	public function deleteMessage($message){
+	    unset($this->messages[$message]);
+	}
+
+	public function viewMessages(){
+	    for($i=0; $i < count($this->messages); $i++){
+	        echo $this->messages[$i];
+	    }
+	}
+}
+
 ?>

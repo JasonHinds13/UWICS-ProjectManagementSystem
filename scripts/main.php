@@ -28,7 +28,7 @@ if($_SERVER["REQUEST_METHOD"] === "POST"){
         $q = $conn->query($sql);
         $result = $q->fetchAll(PDO::FETCH_ASSOC);
         
-        if(count($result) == 1){
+        if(count($result) > 0){
             echo "Login Successful";
             
             $_SESSION["uwi_id"] = $result[0]["uwi_id"];

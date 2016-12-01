@@ -7,8 +7,10 @@
     <body>
         <div id="navbar">
             <a href="homepage.php"><button id = "home">Home</button></a>
-            <a href="createproject.html"><button id = "projects">Projects</button></a>
-            <a href="createtask.html"><button id = "tasks">Tasks</button></a>
+            <a href="createproject.html"><button id = "projects">Create Projects</button></a>
+            <a href="createtask.html"><button id = "tasks">Create Tasks</button></a>
+            <a href="viewprojects.php"><button id = "projects">View Projects</button></a>
+            <a href="viewtasks.php"><button id = "tasks">View Tasks</button></a>
         </div>
         
         <h1>Tasks: </h1>

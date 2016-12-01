@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>View Projects</title>
+        <title>Forum</title>
     </head>
     
     <body>
@@ -14,21 +14,30 @@
             <a href="forum.php"><button id = "forum">Forum</button></a>
         </div>
         
-        <h1>Projects: </h1>
+        <h1>Messages: </h1>
         <?php
             include 'scripts/main.php';
             
-            $stmt = $conn->query("SELECT * FROM projects;");
+            $stmt = $conn->query("SELECT * FROM messages;");
             $res = $stmt->fetchAll(PDO::FETCH_ASSOC);
             
             foreach($res as $r){
-                echo "<h2>" . $r["name"] . "</h2>";
+                echo "<h2>" . $r["title"] . "</h2>";
                 echo "<ul>";
-                echo "<li>" . "Description: " . $r["description"] . "</li>";
-                echo "<li> Member Email: ". $r["member"] . "</li>";
-                echo "<li>" . "SIG: " . $r["sig"] . "</li>";
+                echo "<li>" . "Author: " . $r["author"] . "</li>";
+                echo "<li> Message: ". $r["message"] . "</li>";
+                echo "<li>" . "TimeStamp: " . $r["time"] . "</li>";
                 echo "</ul>";
             }
         ?>
+        
+        <hr />
+        
+        <form action="scripts/main.php" action="post">
+            Author: <input type="text" name ="author" required/> <br />
+            Title: <input type="text" name ="m_title" required/> <br />
+	        Message: <input type ="text" name="m_message" required/> <br />
+	        <input type="submit" value="Post Message"/>
+        </form>
     </body>
 </html>

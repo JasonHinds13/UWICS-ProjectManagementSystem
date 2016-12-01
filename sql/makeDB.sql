@@ -47,3 +47,14 @@ CREATE TABLE `interestgroup` (
     `leader_id` int NOT NULL default '0',
     `name` char(255) NOT NULL default ''
 );
+
+-- create table 'messages' for forum
+
+DROP TABLE IF EXISTS `messages`;
+CREATE TABLE `messages` (
+    `id` int NOT NULL auto_increment PRIMARY KEY,
+    `author` int NOT NULL default '0',
+    `title` char(255) NOT NULL default '',
+    `message` char(255) NOT NULL default '',
+    `time` DATETIME
+);

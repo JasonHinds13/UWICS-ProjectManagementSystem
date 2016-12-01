@@ -63,7 +63,7 @@ if($_SERVER["REQUEST_METHOD"] === "POST"){
         $msg = "Hello $fname, You have used this email to sign up for UWI CS Project Management System.";
         mail($email,"Welcome to UWI CS Projects",$msg);
         
-        header('Location: /index.php');
+        header('Location: /index.html');
     }
     
     //post data for creating a new project
@@ -109,10 +109,20 @@ if($_SERVER["REQUEST_METHOD"] === "POST"){
         
         header('Location: /homepage.php');
     }
+    
+    //for forum posts
+    $auth = $_POST["author"];
+    $m_title = $_POST["m_title"];
+    $m_message = $_POST["m_message"];
+    
+    if(isset($auth) && isset($m_title) && isset($m_message)){
+        $m = new Message($auth, $m_title, $m_message);
+        $m->store_to_db($conn);
+    }
 }
 
-if($_SERVER["REQUEST_METHOD"] === "GET"){
+//if($_SERVER["REQUEST_METHOD"] === "GET"){
     //handle get requests
-}
+//}
 
 ?>

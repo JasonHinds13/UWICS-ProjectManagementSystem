@@ -120,11 +120,10 @@ class Messages{
 	private $message = "";
 	private $timestamp = "";
 
-	public function __constructor($author,$title,$message,$timestamp){
+	public function __constructor($author,$title,$message){
 	    $this->author = $author;
 	    $this->title = $title;
 	    $this->message = $message;
-	    $this->timestamp = $timestamp;
 	}
 
 	public function viewMessage(){
@@ -133,6 +132,13 @@ class Messages{
 
 	public function messageSummary(){
 	    echo "Author: " . $this->author . " Message: " . $this->message;
+	}
+	
+	public function store_to_db($conn){
+	    $this->timestamp = date("Y-m-d H:i:s");
+	    
+	    $sql = "INSERT INTO messages(author,title,message,time) VALUES('$this->author','$this->title','$this->message','$this->timestamp');";
+        $conn->exec($sql);
 	}
 }
 

@@ -24,7 +24,6 @@ if($_SERVER["REQUEST_METHOD"] === "POST"){
     $logpass = $_POST["logpass"];
     
     if(isset($logmail) && isset($logpass)){
-        //$sql = "SELECT * FROM members WHERE email='$logmail' AND password='$logpass';";
         $sql = "SELECT * FROM members WHERE uwi_id='$logmail';";
         $q = $conn->query($sql);
         $result = $q->fetchAll(PDO::FETCH_ASSOC);
@@ -37,15 +36,20 @@ if($_SERVER["REQUEST_METHOD"] === "POST"){
             $_SESSION["lastname"] = $result[0]["lastname"];
             $_SESSION["email"] = $result[0]["email"];
             $_SESSION["acctype"] = $result[0]["acctype"];
+            setcookie("acctype", $result[0]["acctype"], time()+3600);
+            $_COOKIE["test"] = "test";
             $_SESSION["sig"] = $result[0]["sig"];
             
-            header('Location: /homepage.php');
+            if ($_SESSION["acctype"] == "leader") {
+                header('Location: /leaderhomepage.php');
+            } else if ($_SESSION["acctype"] == "member") {
+                header('Location: /memberhomepage.php');
+            }
         }   
         else{
             $message = "Incorrect Login Information";
             echo "<script type='text/javascript'>alert('". $message ."');</script>";
-            
-            header('Refresh: 5; Location: /index.html');
+            header('Refresh: 2; Location: /index.html');
         }
     }
     
@@ -57,7 +61,6 @@ if($_SERVER["REQUEST_METHOD"] === "POST"){
     $sig = $_POST["sig"];
     $acctype = $_POST["acctype"];
     $password = password_hash($_POST["password"], PASSWORD_DEFAULT);
-    //$password = $_POST["password"];
     
     //create new member
     if(isset($fname) && isset($lname) && isset($id_num) && isset($email) && isset($sig) && isset($acctype) && isset($password)){
@@ -73,9 +76,16 @@ if($_SERVER["REQUEST_METHOD"] === "POST"){
         $_SESSION["lastname"] = $lname;
         $_SESSION["email"] = $email;
         $_SESSION["acctype"] = $acctype;
+        setcookie("acctype", $acctype, time()+3600);
+        $_COOKIE["test"] = "test";
         $_SESSION["sig"] = $sig;
             
-        header('Location: /homepage.php');
+        
+        if ($_SESSION["acctype"] == "leader") {
+            header('Location: /leaderhomepage.php');
+        } else if ($_SESSION["acctype"] == "member") {
+            header('Location: /memberhomepage.php');
+        }
     }
 
     
@@ -87,10 +97,10 @@ if($_SERVER["REQUEST_METHOD"] === "POST"){
     
     //create new project
     if(isset($pname) && isset($pdesc) &&isset($psig)){
-        $proj = new Project($pname,$pdesc,$psig);
+        $proj = new Project($pname,$pdesc,$projm,$psig);
         $proj->store_to_db($conn);
         
-        header('Location: /viewprojects.php');
+        header('Location: /viewprojects.html');
     }
     
     //post data for creating new task
@@ -108,7 +118,7 @@ if($_SERVER["REQUEST_METHOD"] === "POST"){
         $msg = "You have been assigned to a task: $tname where you will $tdesc.";
         mail($tmember,"You've been assigned to a task",$msg);
         
-        header('Location: /viewtasks.php');
+        header('Location: /viewtasks.html');
     }
     
     //post data for updating task
@@ -120,12 +130,77 @@ if($_SERVER["REQUEST_METHOD"] === "POST"){
         $task = new Task($task_name,'','','','');
         $task->update_progress($conn, $newprog);
         
-        header('Location: /homepage.php');
+        
+        if ($_SESSION["acctype"] == "leader") {
+            header('Location: /leaderhomepage.php');
+        } else if ($_SESSION["acctype"] == "member") {
+            header('Location: /memberhomepage.php');
+        }
     }
 }
 
 if($_SERVER["REQUEST_METHOD"] === "GET"){
     //handle get requests
+    
+    //return all task data
+    $task = $_GET["tasks"];
+    
+    if($task == 'true'){
+        $stmt = $conn->query("SELECT * FROM tasks;");
+        $res = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        
+        foreach($res as $r){
+            $i = $r["project_id"];
+            $n = $conn->query("select projects.name from projects JOIN tasks ON projects.id = '$i';");
+            $m = $n->fetchAll(PDO::FETCH_ASSOC);
+            
+            echo "<h2>" . $r["name"] . "</h2>";
+            echo "<ul>";
+            echo "<li>" . "Project: " . $m[0]["name"] . "</li>";
+            echo "<li>" . "Description: " . $r["description"] . "</li>";
+            echo "<li>" . "Member: " . $r["member"] . "</li>";
+            echo "<li>" . "Progress: " . $r["progress"] . "%". "</li>";
+            echo "</ul>";
+        }
+    }
+    
+    //return all project data
+    $proj = $_GET["projects"];
+    
+    if ($proj == 'true'){
+        $stmt = $conn->query("SELECT * FROM projects;");
+        $res = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        
+        foreach($res as $r){
+            echo "<h2>" . $r["name"] . "</h2>";
+            echo "<ul>";
+            echo "<li>" . "Description: " . $r["description"] . "</li>";
+            echo "<li> Member Email: ". $r["member"] . "</li>";
+            echo "<li>" . "SIG: " . $r["sig"] . "</li>";
+            echo "</ul>";
+        }
+    }
+    
+    //return all messages
+    $messages = $_GET["messages"];
+    
+    if($messages == 'true'){
+        $stmt = $conn->query("SELECT * FROM messages;");
+        $res = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        
+        foreach($res as $r){
+            echo "<h2>" . $r["title"] . "</h2>";
+            echo "<ul>";
+            echo "<li>" . "Author: " . $r["author"] . "</li>";
+            echo "<li> Message: ". $r["message"] . "</li>";
+            echo "<li>" . "TimeStamp: " . $r["time"] . "</li>";
+            echo "</ul>";
+        }
+    }
+    
+    //all tasks for a specific member
+    
+    //all projects for specific member
 }
 
 ?>

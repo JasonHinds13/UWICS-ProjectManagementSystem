@@ -2,34 +2,24 @@
 <html>
     <head>
         <title>Forum</title>
+        <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+        <script type="text/javascript" src="scripts/viewmessages.js"></script>
     </head>
     
     <body>
         <div id="navbar">
             <a href="homepage.php"><button id = "home">Home</button></a>
-            <a href="createproject.html"><button id = "projects">Create Projects</button></a>
-            <a href="createtask.html"><button id = "tasks">Create Tasks</button></a>
+            <!--<a href="createproject.html"><button id = "projects">Create Projects</button></a>
+            <a href="createtask.html"><button id = "tasks">Create Tasks</button></a>-->
             <a href="viewprojects.php"><button id = "projects">View Projects</button></a>
             <a href="viewtasks.php"><button id = "tasks">View Tasks</button></a>
-            <a href="forum.php"><button id = "forum">Forum</button></a>
+            <a href="forum.html"><button id = "forum">Forum</button></a>
         </div>
         
         <h1>Messages: </h1>
-        <?php
-            include 'scripts/main.php';
+        <div id="vmes">
             
-            $stmt = $conn->query("SELECT * FROM messages;");
-            $res = $stmt->fetchAll(PDO::FETCH_ASSOC);
-            
-            foreach($res as $r){
-                echo "<h2>" . $r["title"] . "</h2>";
-                echo "<ul>";
-                echo "<li>" . "Author: " . $r["author"] . "</li>";
-                echo "<li> Message: ". $r["message"] . "</li>";
-                echo "<li>" . "TimeStamp: " . $r["time"] . "</li>";
-                echo "</ul>";
-            }
-        ?>
+        </div>
         
         <hr />
         

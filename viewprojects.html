@@ -1,29 +1,25 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <title>View Projects</title>
         <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-        <script type="text/javascript" src="scripts/createproject.js"></script>
+        <script type="text/javascript" src="scripts/viewproject.js"></script>
         <script type="text/javascript" src="scripts/navbar.js"></script>
     </head>
+    
     <body>
         <div id="navbar">
-            <a href="leaderhomepage.php"><button id = "home">Home</button></a>
+            <a id = "home" href="homepage.php"><button id = "home">Home</button></a>
             <!--<a href="createproject.html"><button id = "projects">Create Projects</button></a>
             <a href="createtask.html"><button id = "tasks">Create Tasks</button></a>-->
             <a href="viewprojects.html"><button id = "projects">View Projects</button></a>
             <a href="viewtasks.html"><button id = "tasks">View Tasks</button></a>
             <a href="forum.php"><button id = "forum">Forum</button></a>
         </div>
-        <div id = "">
-        </div>
         
-        <h1>Create A Project</h1>
-        <form action="scripts/main.php" method="post">
-            Name: <input type="text" name ="proj_name" required/> <br />
-            Member Email: <input type="text" name ="proj_mem" required/> <br />
-	        Description: <input type ="text" name="proj_desc" required/> <br />
-	        Special Interest Group: <input type ="text" name="proj_sig" required/> <br />
-	        <input type="submit" value="Create Project"/>
-        </form>
+        <h1>Projects: </h1>
+        <div id="vproject">
+            
+        </div>
     </body>
 </html>

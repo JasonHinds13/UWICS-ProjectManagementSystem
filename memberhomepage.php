@@ -3,13 +3,13 @@
     <head>
         <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
         <script type="text/javascript" src="scripts/homepage.js"></script>
-        <script type="text/javascript" src="navbar.js"></script>
+        <script type="text/javascript" src="scripts/navbar.js"></script>
     </head>
     <body>
         <div id="navbar">
             <a href="homepage.php"><button id = "home">Home</button></a>
-            <a href="viewprojects.php"><button id = "projects">View Projects</button></a>
-            <a href="viewtasks.php"><button id = "tasks">View Tasks</button></a>
+            <a href="viewprojects.html"><button id = "projects">View Projects</button></a>
+            <a href="viewtasks.html"><button id = "tasks">View Tasks</button></a>
             <a href="forum.php"><button id = "forum">Forum</button></a>
         </div>
         

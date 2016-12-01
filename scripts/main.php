@@ -88,6 +88,10 @@ if($_SERVER["REQUEST_METHOD"] === "POST"){
         $task = new Task($tname,$tpname,$tdesc,$tmember,0);
         $task->store_to_db($conn);
         
+        //send mail
+        $msg = "You have been assigned to a task: $tname where you will $tdesc.";
+        mail($tmember,"You've been assigned to a task",$msg);
+        
         header('Location: /viewtasks.php');
     }
     

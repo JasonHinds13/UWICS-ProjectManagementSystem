@@ -135,6 +135,18 @@ if($_SERVER["REQUEST_METHOD"] === "POST"){
             header('Location: /memberhomepage.php');
         }
     }
+    
+    //for forum posts
+    $auth = $_POST["m_author"];
+    $m_title = $_POST["m_title"];
+    $m_message = $_POST["m_message"];
+     
+    if(isset($auth) && isset($m_title) && isset($m_message)){
+        $mess = new Message($auth, $m_title, $m_message);
+        $mess->store_to_db($conn);
+         
+        header('Location: /forum.html');
+    }
 }
 
 if($_SERVER["REQUEST_METHOD"] === "GET"){

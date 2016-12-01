@@ -120,7 +120,7 @@ class Message{
 	private $message = "";
 	private $timestamp = "";
 
-	public function __constructo($author,$title,$message){
+	public function __construct($author,$title,$message){
 	    $this->author = $author;
 	    $this->title = $title;
 	    $this->message = $message;

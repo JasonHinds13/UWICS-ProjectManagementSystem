@@ -1,4 +1,7 @@
 <?php
+include 'scripts/main.php';
+
+echo "Welcome Back, " . $_SESSION["firstname"];
 
 ?>
 
@@ -11,9 +14,9 @@
     </head>
     <body>
         <div id="navbar">
-            <button id = "home">Home</button>
-            <button id = "projects">Projects</button>
-            <button id = "tasks">Tasks</button>
+            <a href="homepage.php"><button id = "home">Home</button></a>
+            <a href="createproject.html"><button id = "projects">Projects</button></a>
+            <a href="createtask.html"><button id = "tasks">Tasks</button></a>
         </div>
         
         <div id="myproj">

@@ -4,13 +4,13 @@
 
 class Member{
     
-    protected $fname = "";
-    protected $lname = "";
-    protected $id_num = "";
-    protected $email = "";
-    protected $sig = "";
-    protected $acctype = "";
-    protected $password = "";
+    private $fname = "";
+    private $lname = "";
+    private $id_num = "";
+    private $email = "";
+    private $sig = "";
+    private $acctype = "";
+    private $password = "";
     
     public function __construct($fname,$lname,$id_num,$email,$sig,$acctype,$password){
         $this->fname = $fname;
@@ -30,16 +30,20 @@ class Member{
 
 class Project{
     
-    protected $name = "";
-    protected $desc = "";
-    protected $sig = "";
+    private $name = "";
+    private $desc = "";
+    private $sig = "";
     
-    protected $tasks = array();
+    private $tasks = array();
     
     public function __construct($name,$desc,$sig){
         $this->name = $name;
         $this->desc = $desc;
         $this->sig = $sig;
+    }
+    
+    public function view_details(){
+        echo "Project: " . $this->name . "Description: " .$this->desc . "SIG: " .$this->sig;
     }
     
     public function store_to_db($conn){
@@ -50,28 +54,45 @@ class Project{
 
 class Task{
     
-    protected $name = "";
-    protected $desc = "";
-    protected $member = "";
-    protected $progress = "";
+    private $name = "";
+    private $pname = "";
+    private $desc = "";
+    private $member = "";
+    private $progress = "";
     
-    public function __construct($name,$desc,$member,$progress){
+    public function __construct($name,$pname,$desc,$member,$progress){
         $this->name = $name;
+        $this->pname = $pname;
         $this->desc = $desc;
         $this->member = $member;
         $this->progress = $progress;
     }
     
+    public function update_progress($conn, $name, $newprog){
+        $sql = "UPDATE tasks SET progess = '$newprog' WHERE name = '$name';";
+        $conn->exec($sql);
+    }
+    
+    public function view_details(){
+        echo "Project:" . $this->pname . 'Name' . $this->name . 'Description' . $this->desc . 'Assignee' . $this->member . 'Progress' . $this->progress;
+    }
+    
     public function store_to_db($conn){
-        $sql = "INSERT INTO tasks(name,description,member,progress) VALUES('$this->name','$this->desc','$this->member','$this->progress');";
+        $ql = "SELECT * FROM projects WHERE name = '$this->pname';";
+        $q = $conn->query($ql);
+        $result = $q->fetchAll(PDO::FETCH_ASSOC);
+        
+        $id = $result[0]["id"];
+        
+        $sql = "INSERT INTO tasks(name,project_id,description,member,progress) VALUES('$this->name','$id','$this->desc','$this->member','$this->progress');";
         $conn->exec($sql);
     }
 }
 
 class InterestGroup{
     
-    protected $name = "";
-    protected $leader = "";
+    private $name = "";
+    private $leader = "";
     
     public function __construct($name, $leader){
         $this->name = $name;

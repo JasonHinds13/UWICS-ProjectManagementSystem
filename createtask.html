@@ -7,12 +7,20 @@
     </head>
     <body>
         <div id="navbar">
-            <button id = "home">Home</button>
-            <button id = "projects">Projects</button>
-            <button id = "tasks">Tasks</button>
+            <a href="homepage.php"><button id = "home">Home</button></a>
+            <a href="createproject.html"><button id = "projects">Projects</button></a>
+            <a href="createtask.html"><button id = "tasks">Tasks</button></a>
         </div>
         <div id = "">
-            
         </div>
+        
+        <h1>Assign A Task</h1>
+        <form action="scripts/main.php" method="post">
+            Task Name: <input type="text" name ="t_name" required/> <br />
+            Project Name: <input type="text" name ="tp_name" required/> <br />
+	        Description: <input type ="text" name="t_desc" required/> <br />
+	        Members Email: <input type ="text" name="t_mem" required/> <br />
+	        <input type="submit" value="Assign Task"/>
+        </form>
     </body>
 </html>
